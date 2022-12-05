@@ -47,6 +47,10 @@ import {
 } from '@coreui/angular-pro';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { InfrastructureModule } from "./views/infrastructure/infrastructure.module";
+import {FinansModule} from "./views/finans/finans.module";
+import {BookingModule} from "./views/booking/booking.module";
+import {PeopleModule} from "./views/people/people.module";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -89,6 +93,10 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    InfrastructureModule,
+    FinansModule,
+    BookingModule,
+    PeopleModule
   ],
   providers: [
     {

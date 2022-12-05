@@ -12,6 +12,72 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Брони'
+  },
+  {
+    name: 'Сегодня',
+    url: '/booking/today',
+    iconComponent: { name: 'cil-calendar-check' }
+  },
+  {
+    name: 'Расписание',
+    url: '/booking/timetable',
+    iconComponent: { name: 'cil-calendar' }
+  },
+  {
+    title: true,
+    name: 'Финансы'
+  },
+  {
+    name: 'Оплаты гостей',
+    url: '/finans/guest-payments',
+    iconComponent: { name: 'cil-money' }
+  },
+  {
+    name: 'Расчёты с CWH',
+    url: '/finans/cwh-billing',
+    iconComponent: { name: 'cil-notes' }
+  },
+  {
+    title: true,
+    name: 'Инфраструктура'
+  },
+  {
+    name: 'Филиалы',
+    url: '/infrastructure/filials',
+    iconComponent: { name: 'cil-house' }
+  },
+  {
+    name: 'Кабинеты',
+    url: '/infrastructure/rooms',
+    iconComponent: { name: 'cil-room' }
+  },
+  {
+    name: 'Рабочие места',
+    url: '/infrastructure/desks',
+    iconComponent: { name: 'cil-laptop' }
+  },
+  {
+    name: 'Ресурсы',
+    url: '/infrastructure/resources',
+    iconComponent: { name: 'cil-print' }
+  },
+  {
+    title: true,
+    name: 'Люди'
+  },
+  {
+    name: 'Гости',
+    url: '/people/guests',
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    name: 'Сотрудники',
+    url: '/people/staff',
+    iconComponent: { name: 'cil-weightlifitng' }
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {

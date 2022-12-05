@@ -38,6 +38,26 @@ const routes: Routes = [
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
+        path: 'booking',
+        loadChildren: () =>
+          import('./views/booking/booking.module').then((m) => m.BookingModule)
+      },
+      {
+        path: 'finans',
+        loadChildren: () =>
+          import('./views/finans/finans.module').then((m) => m.FinansModule)
+      },
+      {
+        path: 'infrastructure',
+        loadChildren: () =>
+          import('./views/infrastructure/infrastructure.module').then((m) => m.InfrastructureModule)
+      },
+      {
+        path: 'people',
+        loadChildren: () =>
+          import('./views/people/people.module').then((m) => m.PeopleModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)
