@@ -1,4 +1,41 @@
 <c-row>
+  <c-col [sm]="12">
+    <button cButton
+            color="success"
+            class="mb-3"
+            (click)="onAddFilialPress()">
+      Добавить филиал
+    </button>
+  </c-col>
+</c-row>
+<c-row>
+  <c-col [sm]="12" #addFilialContainer>
+    <c-card class="mb-4">
+      <c-card-body>
+        <form cForm>
+          <div class="mb-3">
+            <label cLabel for="name">Название филиала</label>
+            <input cFormControl
+                   id="name"
+                   placeholder="Название филиала"
+                   type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label cLabel for="address">Адрес</label>
+            <input cFormControl
+                   id="address"
+                   placeholder="Адрес"
+                   type="text"
+            />
+          </div>
+          <button cButton color="primary" class="me-1">Сохранить</button>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+<c-row>
   <c-col [sm]="6">
     <c-card class="mb-4">
       <c-card-body>

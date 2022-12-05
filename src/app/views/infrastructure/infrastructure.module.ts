@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import {CardModule, GridModule, NavModule, UtilitiesModule, TabsModule, ButtonModule} from '@coreui/angular-pro';
+import {
+  CardModule,
+  GridModule,
+  NavModule,
+  UtilitiesModule,
+  TabsModule,
+  ButtonModule,
+  FormModule
+} from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
 import { DesksComponent } from "./desks/desks.component";
@@ -21,7 +29,8 @@ import { InfrastructureRoutingModule } from "./infrastructure-routing.module";
     IconModule,
     NavModule,
     TabsModule,
-    ButtonModule
+    ButtonModule,
+    FormModule
   ],
   declarations: [
     FilialsComponent,

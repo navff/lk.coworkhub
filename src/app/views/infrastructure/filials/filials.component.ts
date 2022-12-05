@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-filials',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilialsComponent implements OnInit {
 
+  @ViewChild("myNameElem") addFilialContainer: ElementRef;
+
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onAddFilialPress(){
+    alert('Привет');
+    this.addFilialContainer.nativeElement.visible = false;
   }
 
 }
