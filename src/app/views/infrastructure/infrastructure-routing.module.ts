@@ -5,6 +5,7 @@ import { DesksComponent } from "./desks/desks.component";
 import { FilialsComponent } from "./filials/filials.component";
 import { ResourcesComponent } from "./resources/resources.component";
 import { RoomsComponent } from "./rooms/rooms.component";
+import {RoomDetailsComponent} from "./room-details/room-details.component";
 
 
 const routes: Routes = [
@@ -31,6 +32,13 @@ const routes: Routes = [
         component: RoomsComponent,
         data: {
           title: 'Кабинеты',
+        },
+      },
+      {
+        path: 'room-details',
+        component: RoomDetailsComponent,
+        data: {
+          title: 'Кабинет',
         },
       },
       {

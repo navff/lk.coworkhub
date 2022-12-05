@@ -1,1 +1,62 @@
-<p>rooms works!</p>
+<c-row>
+  <c-col [sm]="12" [md]="4">
+    <div cListGroup class="mb-4">
+      <button
+         cListGroupItem
+         [active]="true">
+        Домик Друзей на Андреевской 6
+      </button>
+
+      <button
+         cListGroupItem>
+        Домик Друзей на Архангельской, 80
+      </button>
+    </div>
+  </c-col>
+  <c-col>
+    <c-row>
+      <c-col [sm]="12" [md]="6" class="mb-4">
+        <c-card class="h-100">
+          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
+          <c-card-body>
+            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+              <h5 cCardTitle>Первый этаж, стекляшка</h5>
+            </a>
+            <p cCardText>
+              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
+            </p>
+          </c-card-body>
+        </c-card>
+      </c-col>
+      <c-col [sm]="12" [md]="6" class="mb-4">
+        <c-card class="h-100">
+          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
+          <c-card-body>
+            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+              <h5 cCardTitle>Второй этаж, с лестницей</h5>
+            </a>
+            <p cCardText>
+              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
+            </p>
+          </c-card-body>
+        </c-card>
+      </c-col>
+      <c-col [sm]="12" [md]="6" class="mb-4">
+        <c-card class="h-100">
+          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
+          <c-card-body>
+            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
+              <h5 cCardTitle>Второй этаж, П3000</h5>
+            </a>
+            <p cCardText>
+              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
+            </p>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-col>
+</c-row>

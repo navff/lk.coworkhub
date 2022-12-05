@@ -20,4 +20,8 @@ export class FilialsComponent implements OnInit {
     this.addingFilialMode = true;
   }
 
+  onSaveNewFilial() {
+    this.addingFilialMode = false;
+  }
+
 }
