@@ -2,6 +2,8 @@ name: Build Check
 
 on:
   push:
+    branches:
+      - nothing
     branches-ignore:
       - "dependabot/**"
   pull_request:
@@ -9,7 +11,7 @@ on:
       - main
       - v4*
   schedule:
-    - # build runs every monday at 4:15AM UTC
+    # build runs every monday at 4:15AM UTC
     - cron: '15 4 * * 1'
 
 env:
