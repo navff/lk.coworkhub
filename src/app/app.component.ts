@@ -25,6 +25,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((evt) => {
+
+      if (document.location.protocol == 'http:' &&
+         !document.location.host.includes('localhost'))
+      {
+        document.location.protocol = 'https:';
+      }
+
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
