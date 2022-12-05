@@ -9,6 +9,7 @@ export class FilialsComponent implements OnInit {
 
   @ViewChild("myNameElem") addFilialContainer: ElementRef;
 
+  addingFilialMode: boolean = false;
 
   constructor() { }
 
@@ -16,8 +17,7 @@ export class FilialsComponent implements OnInit {
   }
 
   onAddFilialPress(){
-    alert('Привет');
-    this.addFilialContainer.nativeElement.visible = false;
+    this.addingFilialMode = true;
   }
 
 }
