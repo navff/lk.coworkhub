@@ -1,5 +1,6 @@
 <c-row>
   <c-col [sm]="12" [md]="4">
+    <h5>Выберите филиал:</h5>
     <div cListGroup class="mb-4">
       <button
          cListGroupItem
@@ -15,6 +16,7 @@
   </c-col>
   <c-col>
     <c-row>
+      <h5>Кабинеты в выбранном филиале:</h5>
       <c-col [sm]="12" [md]="6" class="mb-4">
         <c-card class="h-100">
           <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
@@ -55,6 +57,13 @@
               Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
             </p>
           </c-card-body>
+        </c-card>
+      </c-col>
+      <c-col [sm]="12" [md]="6" class="mb-4">
+        <c-card class="h-100">
+          <div class="d-flex justify-content-center">
+            <button cButton color="success" style="width: 100px; margin: 4rem" class="align-middle">Добавить кабинет</button>
+          </div>
         </c-card>
       </c-col>
     </c-row>

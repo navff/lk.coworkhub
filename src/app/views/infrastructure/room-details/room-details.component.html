@@ -1,1 +1,75 @@
-<p>room-details works!</p>
+<c-modal id="liveDemoModal" [visible]="removeDeskModelVisible">
+  <c-modal-header>
+    <h5 cModalTitle>Удалить рабочее место?</h5>
+    <button (click)="onCloseRemoveDeskModal()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Рабочее место будет удалено без возможности восстановления</c-modal-body>
+  <c-modal-footer>
+    <button (click)="onCloseRemoveDeskModal()" cButton color="secondary">
+      Отмена
+    </button>
+    <button cButton color="danger" (click)="removeDesk()">Да, удалить</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-row>
+  <c-col [lg]="7" class="mb-5">
+    <label cLabel for="exampleFormControlInput1">Название кабинета</label>
+    <input cFormControl
+           id="exampleFormControlInput1"
+           type="text"
+    />
+
+    <div>
+
+      <div style="display: inline-block; vertical-align: baseline">
+        <c-input-group class="mb-3"            style="margin-top: 10px">
+          <input cFormControl id="inputGroupFile02" type="file" />
+        </c-input-group>
+      </div>
+      <img style="display: inline-block; margin-left: 5px; padding-bottom: 3px"
+           height="38"
+           src="https://coreui.io/angular/docs/assets/img/angular400.jpg"
+      />
+    </div>
+    <button cButton color="primary">Сохранить</button>
+  </c-col>
+</c-row>
+
+
+<c-row>
+  <c-col [sm]="10" [md]="8" [lg]="9">
+    <h4>Рабочие места:</h4>
+    <c-card class="w-75 mb-2">
+      <c-card-body>
+        <strong>Стол у окна</strong>
+        <div style="float: right">
+          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('1')">
+            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+          </button>
+        </div>
+      </c-card-body>
+    </c-card>
+    <c-card class="w-75 mb-2">
+      <c-card-body>
+        <strong>Стол у туалета</strong>
+        <div style="float: right">
+          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('2')">
+            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+          </button>
+        </div>
+      </c-card-body>
+    </c-card>
+    <c-card class="w-75 mb-2">
+      <c-card-body>
+        <strong style="cursor: pointer;" (click)="onDeskClick('3')">Диван с журнальным столиком у входной двери</strong>
+        <div style="float: right">
+          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('3')">
+            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+          </button>
+        </div>
+      </c-card-body>
+    </c-card>
+    <button cButton color="success">Добавить рабочее место</button>
+  </c-col>
+</c-row>
