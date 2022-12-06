@@ -31,4 +31,8 @@ export class RoomDetailsComponent implements OnInit {
   onDeskClick(deskId: string){
     alert('Desk clicked ' + deskId);
   }
+
+  onRoomEditSubmit() {
+    alert('Submit');
+  }
 }

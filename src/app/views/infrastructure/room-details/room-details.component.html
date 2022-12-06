@@ -14,25 +14,26 @@
 
 <c-row>
   <c-col [lg]="7" class="mb-5">
-    <label cLabel for="exampleFormControlInput1">Название кабинета</label>
-    <input cFormControl
-           id="exampleFormControlInput1"
-           type="text"
-    />
-
-    <div>
-
-      <div style="display: inline-block; vertical-align: baseline">
-        <c-input-group class="mb-3"            style="margin-top: 10px">
-          <input cFormControl id="inputGroupFile02" type="file" />
-        </c-input-group>
-      </div>
-      <img style="display: inline-block; margin-left: 5px; padding-bottom: 3px"
-           height="38"
-           src="https://coreui.io/angular/docs/assets/img/angular400.jpg"
+    <form cForm (submit)="onRoomEditSubmit()">
+      <label cLabel for="exampleFormControlInput1">Название кабинета</label>
+      <input cFormControl
+             id="exampleFormControlInput1"
+             type="text"
       />
-    </div>
-    <button cButton color="primary">Сохранить</button>
+
+      <div>
+        <div style="display: inline-block; vertical-align: baseline">
+          <c-input-group class="mb-3"            style="margin-top: 10px">
+            <input cFormControl id="inputGroupFile02" type="file" />
+          </c-input-group>
+        </div>
+        <img style="display: inline-block; margin-left: 5px; padding-bottom: 3px"
+             height="38"
+             src="https://coreui.io/angular/docs/assets/img/angular400.jpg"
+        />
+      </div>
+      <button cButton color="primary" type="submit">Сохранить</button>
+    </form>
   </c-col>
 </c-row>
 
