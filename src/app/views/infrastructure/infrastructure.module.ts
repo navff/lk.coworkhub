@@ -8,7 +8,7 @@ import {
   UtilitiesModule,
   TabsModule,
   ButtonModule,
-  FormModule, ListGroupModule, ImgModule, ModalModule
+  FormModule, ListGroupModule, ImgModule, ModalModule, ToastModule
 } from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -19,6 +19,8 @@ import { RoomsComponent } from "./rooms/rooms.component";
 
 import { InfrastructureRoutingModule } from "./infrastructure-routing.module";
 import { RoomDetailsComponent } from './room-details/room-details.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DeskComponent } from './desks/desk/desk.component';
 
 @NgModule({
   imports: [
@@ -34,14 +36,18 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
     FormModule,
     ListGroupModule,
     ImgModule,
-    ModalModule
+    ModalModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastModule
   ],
   declarations: [
     FilialsComponent,
     ResourcesComponent,
     RoomsComponent,
     DesksComponent,
-    RoomDetailsComponent
+    RoomDetailsComponent,
+    DeskComponent
   ]
 })
 export class InfrastructureModule {

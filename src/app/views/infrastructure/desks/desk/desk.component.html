@@ -1,0 +1,80 @@
+<c-modal id="liveDemoModal" [visible]="removeDeskModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle>Удалить рабочее место?</h5>
+    <button (click)="onCloseRemoveDeskModal()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Рабочее место будет удалено без возможности восстановления</c-modal-body>
+  <c-modal-footer>
+    <button (click)="onCloseRemoveDeskModal()" cButton color="secondary">
+      Отмена
+    </button>
+    <button cButton color="danger" (click)="removeDesk()">Да, удалить</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-card class="w-75 mb-2">
+  <c-card-body>
+    <strong style="cursor: pointer;" (click)="onDeskClick()">{{desk.name}}</strong>
+    <div style="float: right">
+      <button cButton color="danger" size="sm" (click)="onRemoveDeskClick()">
+        <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+      </button>
+    </div>
+
+    <div class="edit-desk mt-4" [hidden]="!editMode">
+      <form cForm
+            [formGroup]="editDeskForm"
+            novalidate
+            class="needs-validation"
+            (ngSubmit)="onEditDeskSubmit()"
+            [validated] = false
+      >
+        <div class="mb-3">
+          <label cLabel for="newDeskName">Название</label>
+          <input cFormControl
+                 id="newDeskName"
+                 type="text"
+                 formControlName="name"
+                 [valid]="editDeskForm.controls.name.valid"
+          />
+          <c-form-feedback [hidden]="editDeskForm.controls.name.valid">Название нужно ввести обязательно</c-form-feedback>
+
+        </div>
+        <div class="mb-3">
+          <label cLabel for="newDeskMonthPrice">Цена за месяц</label>
+          <input cFormControl
+                 id="newDeskMonthPrice"
+                 type="number"
+                 formControlName="monthPrice"
+                 [valid]="editDeskForm.controls.monthPrice.valid"
+          />
+          <c-form-feedback [hidden]="editDeskForm.controls.monthPrice.valid">Введите цену за месяц</c-form-feedback>
+        </div>
+        <div class="mb-3">
+          <label cLabel for="newDeskHourPrice">Цена за час</label>
+          <input cFormControl
+                 id="newDeskHourPrice"
+                 type="number"
+                 formControlName="hourPrice"
+                 [valid]="editDeskForm.controls.hourPrice.valid"
+          />
+          <c-form-feedback [hidden]="editDeskForm.controls.hourPrice.valid">Введите цену за час</c-form-feedback>
+        </div>
+        <button cButton
+                color="primary"
+                type="submit"
+                class="me-2"
+                [disabled]="!editDeskForm.valid">
+          Сохранить
+        </button>
+        <button cButton
+                color="secondary"
+                (click)="onEditDeskCancel()">
+          Отмена
+        </button>
+      </form>
+    </div>
+  </c-card-body>
+</c-card>
+
+

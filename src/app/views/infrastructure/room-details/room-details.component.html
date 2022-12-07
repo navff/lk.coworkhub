@@ -1,29 +1,63 @@
-<c-modal id="liveDemoModal" [visible]="removeDeskModelVisible">
+<c-modal id="liveDemoModal" [visible]="showRemoveRoomModal">
   <c-modal-header>
-    <h5 cModalTitle>Удалить рабочее место?</h5>
-    <button (click)="onCloseRemoveDeskModal()" cButtonClose></button>
+    <h5 cModalTitle>Удалить кабинет?</h5>
+    <button (click)="onCloseRemoveRoomModal()" cButtonClose></button>
   </c-modal-header>
-  <c-modal-body>Рабочее место будет удалено без возможности восстановления</c-modal-body>
+  <c-modal-body>Кабинет со всеми рабочими местами будет удалён без возможности восстановления</c-modal-body>
   <c-modal-footer>
-    <button (click)="onCloseRemoveDeskModal()" cButton color="secondary">
+    <button (click)="onCloseRemoveRoomModal()" cButton color="secondary">
       Отмена
     </button>
-    <button cButton color="danger" (click)="removeDesk()">Да, удалить</button>
+    <button cButton color="danger" (click)="removeRoom()">Да, удалить</button>
   </c-modal-footer>
 </c-modal>
 
+<c-toaster
+  placement='bottom-center'
+  class="p-3"
+  position="fixed">
+  <c-toast
+    [visible]="true"
+    color='success'
+    cBgColor="light"
+    delay="3000">
+    <c-toast-header
+      cBgColor="success"
+      cTextColor="dark">
+      Это успех!
+    </c-toast-header>
+    <c-toast-body>
+      <p>Успешно сохранено!</p>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
+
+
 <c-row>
   <c-col [lg]="7" class="mb-5">
-    <form cForm (submit)="onRoomEditSubmit()">
+    <form #customStylesForm="ngForm"
+          (ngSubmit)="onRoomEditSubmit()"
+          (focusout)="roomEditFocusOut()"
+          [validated]="editRoomFormValidated"
+          [formGroup]="editRoomForm"
+          cForm
+          class="needs-validation">
+
       <label cLabel for="exampleFormControlInput1">Название кабинета</label>
-      <input cFormControl
-             id="exampleFormControlInput1"
-             type="text"
-      />
+      <c-input-group class="has-validation">
+        <input cFormControl
+               required
+               id="exampleFormControlInput1"
+               type="text"
+               formControlName="name"
+        />
+        <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+      </c-input-group>
+
 
       <div>
         <div style="display: inline-block; vertical-align: baseline">
-          <c-input-group class="mb-3"            style="margin-top: 10px">
+          <c-input-group class="mb-3 mt-2">
             <input cFormControl id="inputGroupFile02" type="file" />
           </c-input-group>
         </div>
@@ -32,7 +66,13 @@
              src="https://coreui.io/angular/docs/assets/img/angular400.jpg"
         />
       </div>
-      <button cButton color="primary" type="submit">Сохранить</button>
+      <button cButton
+              color="primary"
+              type="submit"
+              style="width: auto"
+              [disabled]="!editRoomForm.valid">
+        Сохранить
+      </button>
     </form>
   </c-col>
 </c-row>
@@ -41,36 +81,58 @@
 <c-row>
   <c-col [sm]="10" [md]="8" [lg]="9">
     <h4>Рабочие места:</h4>
-    <c-card class="w-75 mb-2">
+    <app-desk *ngFor="let desk of room.desks"
+              [desk]="desk">
+    </app-desk>
+
+    <c-card [hidden]="!newDeskMode" class="w-75 mb-2 mt-4">
+      <c-card-header>
+        <h5>Добавить новое рабочее место</h5>
+      </c-card-header>
       <c-card-body>
-        <strong>Стол у окна</strong>
-        <div style="float: right">
-          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('1')">
-            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+        <form cForm [formGroup]="newDeskForm"
+                    (ngSubmit)="onNewDeskSubmit()"
+        >
+          <div class="mb-3">
+            <label cLabel for="newDeskName">Название</label>
+            <input cFormControl
+                   id="newDeskName"
+                   type="text"
+                   formControlName="name"
+            />
+          </div>
+          <div class="mb-3">
+            <label cLabel for="newDeskMonthPrice">Цена за месяц</label>
+            <input cFormControl
+                   id="newDeskMonthPrice"
+                   type="number"
+                   formControlName="monthPrice"
+            />
+          </div>
+          <div class="mb-3">
+            <label cLabel for="newDeskHourPrice">Цена за час</label>
+            <input cFormControl
+                   id="newDeskHourPrice"
+                   type="number"
+                   formControlName="hourPrice"
+            />
+          </div>
+          <button cButton
+                  color="primary"
+                  type="submit"
+                  class="me-2">
+            Сохранить
           </button>
-        </div>
+          <button cButton
+                  color="secondary"
+                  (click)="onNewDeskCancel()">
+            Отмена
+          </button>
+        </form>
       </c-card-body>
     </c-card>
-    <c-card class="w-75 mb-2">
-      <c-card-body>
-        <strong>Стол у туалета</strong>
-        <div style="float: right">
-          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('2')">
-            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
-          </button>
-        </div>
-      </c-card-body>
-    </c-card>
-    <c-card class="w-75 mb-2">
-      <c-card-body>
-        <strong style="cursor: pointer;" (click)="onDeskClick('3')">Диван с журнальным столиком у входной двери</strong>
-        <div style="float: right">
-          <button cButton color="danger" size="sm" (click)="onRemoveDeskClick('3')">
-            <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
-          </button>
-        </div>
-      </c-card-body>
-    </c-card>
-    <button cButton color="success">Добавить рабочее место</button>
+    <button [hidden]="newDeskMode"  cButton color="success" (click)="onNewDeskClick()">Добавить рабочее место</button>
   </c-col>
 </c-row>
+<hr class="mt-5"/>
+  <button cButton color="danger" (click)="onRemoveRoomClick()">Удалить кабинет</button>
