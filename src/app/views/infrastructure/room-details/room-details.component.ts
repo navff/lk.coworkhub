@@ -12,6 +12,7 @@ import {ToastColor} from "../../../services/Toast/Toast";
 export class RoomDetailsComponent implements OnInit {
 
   editRoomFormValidated = false;
+  addDeskFormValidated = false;
 
   public newDeskMode: boolean = false;
   public room: Room = {
@@ -44,15 +45,18 @@ export class RoomDetailsComponent implements OnInit {
   editRoomForm = new FormGroup({
     name: new FormControl(this.room.name, [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(1)
     ]),
     filePath: new FormControl(this.room.imageFilePath)
   });
 
   newDeskForm = new FormGroup({
-    name: new FormControl(''),
-    monthPrice: new FormControl(''),
-    hourPrice: new FormControl(''),
+    name: new FormControl('', [
+    ]),
+    monthPrice: new FormControl(0, [
+    ]),
+    hourPrice: new FormControl(0, [
+    ]),
   });
 
   showRemoveRoomModal: boolean = false;
@@ -79,19 +83,37 @@ export class RoomDetailsComponent implements OnInit {
       this.editRoomFormValidated = true;
     }
   }
+  deskAddFocusOut() {
+    if (this.newDeskForm.dirty) {
+      this.addDeskFormValidated = true;
+    }
+  }
+
 
   onNewDeskClick() {
     this.newDeskMode = !this.newDeskMode;
   }
 
   onNewDeskSubmit() {
-    console.log(this.newDeskForm.controls.name.value);
-    this.newDeskForm.reset();
+    if (this.editRoomForm.valid) {
+      this.room.name = this.editRoomForm.controls.name.value ?? this.room.name;
+      this.toastService.ShowSuccess(
+        'Сохранено',
+        'Рабочее место добавлено'
+      )
+    }
+    else {
+      this.addDeskFormValidated = true;
+    }
+    this.newDeskForm.reset({name: '', hourPrice: 0, monthPrice: 0});
     this.newDeskMode = false;
+    this.addDeskFormValidated = false;
   }
 
   onNewDeskCancel() {
+    this.newDeskForm.reset({name: '', hourPrice: 0, monthPrice: 0});
     this.newDeskMode = false;
+    this.addDeskFormValidated = false;
   }
 
   onRemoveRoomClick() {
@@ -106,5 +128,6 @@ export class RoomDetailsComponent implements OnInit {
     console.log("Room removed: " + this.room.id);
     this.showRemoveRoomModal = false;
   }
+
 
 }

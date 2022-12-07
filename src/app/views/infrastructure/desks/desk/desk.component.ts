@@ -10,6 +10,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class DeskComponent implements OnInit {
   @Input() desk: Desk;
   editMode: boolean = false;
+  editDeskFormValidated = false;
 
   public removeDeskModalVisible = false;
 
@@ -42,8 +43,19 @@ export class DeskComponent implements OnInit {
   }
 
   onEditDeskSubmit() {
-    console.log('Desk edited: ' + this.desk.id);
-    this.editMode = !this.editMode;
+    if (this.editDeskForm.valid)
+    {
+      console.log('Desk edited: ' + this.desk.id);
+      this.editMode = false;
+
+      this.desk.name = this.editDeskForm.controls.name.value ?? this.desk.name;
+      this.desk.monthPrice = this.editDeskForm.controls.monthPrice.value ?? this.desk.monthPrice;
+      this.desk.hourPrice = this.editDeskForm.controls.hourPrice.value ?? this.desk.hourPrice;
+
+      this.editDeskForm.reset(this.desk);
+      this.editDeskFormValidated = false;
+    }
+
   }
 
   onCloseRemoveDeskModal() {
@@ -58,6 +70,12 @@ export class DeskComponent implements OnInit {
   onEditDeskCancel() {
     this.editMode = false;
     this.editDeskForm.reset(this.desk);
+    this.editDeskFormValidated = false;
   }
 
+  deskEditFocusOut() {
+    if (this.editDeskForm.dirty) {
+      this.editDeskFormValidated = true;
+    }
+  }
 }

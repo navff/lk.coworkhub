@@ -13,7 +13,7 @@
 </c-modal>
 
 <c-row>
-  <c-col [lg]="7" class="mb-5">
+  <c-col [sm]="10" [md]="8" [lg]="9" class="mb-5">
     <form #customStylesForm="ngForm"
           (ngSubmit)="onRoomEditSubmit()"
           (focusout)="roomEditFocusOut()"
@@ -46,7 +46,7 @@
         />
       </div>
       <button cButton
-              color="primary"
+              color="dark"
               type="submit"
               style="width: auto"
               [disabled]="!editRoomForm.valid">
@@ -69,37 +69,60 @@
         <h5>Добавить новое рабочее место</h5>
       </c-card-header>
       <c-card-body>
-        <form cForm [formGroup]="newDeskForm"
-                    (ngSubmit)="onNewDeskSubmit()"
+        <form #customStylesForm="ngForm"
+              (ngSubmit)="onNewDeskSubmit()"
+              (focusout)="deskAddFocusOut()"
+              [validated]="addDeskFormValidated"
+              [formGroup]="newDeskForm"
+              cForm
+              class="needs-validation"
         >
           <div class="mb-3">
             <label cLabel for="newDeskName">Название</label>
-            <input cFormControl
-                   id="newDeskName"
-                   type="text"
-                   formControlName="name"
-            />
+            <c-input-group class="has-validation">
+              <input cFormControl
+                     id="newDeskName"
+                     type="text"
+                     formControlName="name"
+                     required="required"
+                     minlength="3"
+                     placeholder="Например, «Стол №4»"
+              />
+              <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+            </c-input-group>
           </div>
           <div class="mb-3">
             <label cLabel for="newDeskMonthPrice">Цена за месяц</label>
-            <input cFormControl
-                   id="newDeskMonthPrice"
-                   type="number"
-                   formControlName="monthPrice"
-            />
+            <c-input-group>
+              <input cFormControl
+                     id="newDeskMonthPrice"
+                     type="number"
+                     min="1"
+                     required = "required"
+                     formControlName="monthPrice"
+              />
+              <c-form-feedback [valid]="false">Нужно ненулевое значение</c-form-feedback>
+            </c-input-group>
+
           </div>
           <div class="mb-3">
             <label cLabel for="newDeskHourPrice">Цена за час</label>
-            <input cFormControl
-                   id="newDeskHourPrice"
-                   type="number"
-                   formControlName="hourPrice"
-            />
+            <c-input-group>
+              <input cFormControl
+                     id="newDeskHourPrice"
+                     type="number"
+                     formControlName="hourPrice"
+                     required = "required"
+                     min="1"
+              />
+              <c-form-feedback [valid]="false">Нужно ненулевое значение</c-form-feedback>
+            </c-input-group>
           </div>
           <button cButton
-                  color="primary"
+                  color="dark"
                   type="submit"
-                  class="me-2">
+                  class="me-2"
+                  [disabled]="!newDeskForm.valid">
             Сохранить
           </button>
           <button cButton
@@ -110,7 +133,7 @@
         </form>
       </c-card-body>
     </c-card>
-    <button [hidden]="newDeskMode"  cButton color="success" (click)="onNewDeskClick()">Добавить рабочее место</button>
+    <button [hidden]="newDeskMode"  cButton color="dark" (click)="onNewDeskClick()">Добавить рабочее место</button>
   </c-col>
 </c-row>
 <hr class="mt-5"/>
