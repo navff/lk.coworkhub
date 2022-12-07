@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {Desk} from "../../../models/infrastructure/desk";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Room} from "../../../models/infrastructure/room";
+import {ToastService} from "../../../services/Toast/toast.service";
+import {ToastColor} from "../../../services/Toast/Toast";
 
 @Component({
   selector: 'app-room-details',
@@ -56,7 +57,7 @@ export class RoomDetailsComponent implements OnInit {
 
   showRemoveRoomModal: boolean = false;
 
-  constructor() { }
+  constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {
   }
@@ -66,7 +67,10 @@ export class RoomDetailsComponent implements OnInit {
     this.editRoomFormValidated = true;
     if (this.editRoomForm.valid) {
       this.room.name = this.editRoomForm.controls.name.value ?? this.room.name;
-      console.log(this.room.name);
+      this.toastService.ShowSuccess(
+        'Сохранено',
+        'Кабинет успешно сохранён'
+      )
     }
   }
 

@@ -12,27 +12,6 @@
   </c-modal-footer>
 </c-modal>
 
-<c-toaster
-  placement='bottom-center'
-  class="p-3"
-  position="fixed">
-  <c-toast
-    [visible]="true"
-    color='success'
-    cBgColor="light"
-    delay="3000">
-    <c-toast-header
-      cBgColor="success"
-      cTextColor="dark">
-      Это успех!
-    </c-toast-header>
-    <c-toast-body>
-      <p>Успешно сохранено!</p>
-    </c-toast-body>
-  </c-toast>
-</c-toaster>
-
-
 <c-row>
   <c-col [lg]="7" class="mb-5">
     <form #customStylesForm="ngForm"

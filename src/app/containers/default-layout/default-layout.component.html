@@ -48,3 +48,25 @@
   <!--app footer-->
   <app-default-footer></app-default-footer>
 </div>
+
+<c-toaster
+  placement='top-center'
+  class="p-3"
+  position="fixed"
+>
+  <c-toast
+    [visible]="toast.visible"
+    [color]="toast.color"
+    (visibleChange)="onToastVisibleChange($event)"
+    cBgColor="light"
+    [delay]="toast.delay">
+    <c-toast-header
+      [cBgColor]="toast.color"
+      cTextColor="dark">
+      {{ toast.title }}
+    </c-toast-header>
+    <c-toast-body>
+      <p>{{ toast.description }}</p>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
