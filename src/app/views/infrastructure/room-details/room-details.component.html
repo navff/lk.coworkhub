@@ -12,50 +12,9 @@
   </c-modal-footer>
 </c-modal>
 
-<c-row>
-  <c-col [sm]="10" [md]="8" [lg]="9" class="mb-5">
-    <form #customStylesForm="ngForm"
-          (ngSubmit)="onRoomEditSubmit()"
-          (focusout)="roomEditFocusOut()"
-          [validated]="editRoomFormValidated"
-          [formGroup]="editRoomForm"
-          cForm
-          class="needs-validation">
+<h1>Редактирование кабинета</h1>
 
-      <label cLabel for="exampleFormControlInput1">Название кабинета</label>
-      <c-input-group class="has-validation">
-        <input cFormControl
-               required
-               id="exampleFormControlInput1"
-               type="text"
-               formControlName="name"
-        />
-        <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
-      </c-input-group>
-
-
-      <div>
-        <div style="display: inline-block; vertical-align: baseline">
-          <c-input-group class="mb-3 mt-2">
-            <input cFormControl id="inputGroupFile02" type="file" />
-          </c-input-group>
-        </div>
-        <img style="display: inline-block; margin-left: 5px; padding-bottom: 3px"
-             height="38"
-             src="https://coreui.io/angular/docs/assets/img/angular400.jpg"
-        />
-      </div>
-      <button cButton
-              color="dark"
-              type="submit"
-              style="width: auto"
-              [disabled]="!editRoomForm.valid">
-        Сохранить
-      </button>
-    </form>
-  </c-col>
-</c-row>
-
+<app-edit-room [room]="this.room"></app-edit-room>
 
 <c-row>
   <c-col [sm]="10" [md]="8" [lg]="9">

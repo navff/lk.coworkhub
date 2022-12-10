@@ -1,71 +1,46 @@
 <c-row>
-  <c-col [sm]="12" [md]="4">
-    <h5>Выберите филиал:</h5>
-    <div cListGroup class="mb-4">
-      <button
-         cListGroupItem
-         [active]="true">
-        Домик Друзей на Андреевской 6
-      </button>
-
-      <button
-         cListGroupItem>
-        Домик Друзей на Архангельской, 80
-      </button>
-    </div>
+  <c-col [lg]="4" [md]="6" [sm]="12">
+    <app-filial-select
+      (selected)="onSelectFilial($event)"
+      [selectedFilialId]="selectedFilialId"
+      *ngIf="!roomAddingMode">
+    </app-filial-select>
   </c-col>
   <c-col>
-    <c-row>
-      <h5>Кабинеты в выбранном филиале:</h5>
-      <c-col [sm]="12" [md]="6" class="mb-4">
-        <c-card class="h-100">
-          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
-          <c-card-body>
-            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-              <h5 cCardTitle>Первый этаж, стекляшка</h5>
-            </a>
-            <p cCardText>
-              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
-            </p>
-          </c-card-body>
-        </c-card>
-      </c-col>
-      <c-col [sm]="12" [md]="6" class="mb-4">
-        <c-card class="h-100">
-          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
-          <c-card-body>
-            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-              <h5 cCardTitle>Второй этаж, с лестницей</h5>
-            </a>
-            <p cCardText>
-              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
-            </p>
-          </c-card-body>
-        </c-card>
-      </c-col>
-      <c-col [sm]="12" [md]="6" class="mb-4">
-        <c-card class="h-100">
-          <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-            <img cCardImg="top" src="https://coreui.io/angular/docs/assets/img/angular.jpg"></a>
-          <c-card-body>
-            <a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: 12345}">
-              <h5 cCardTitle>Второй этаж, П3000</h5>
-            </a>
-            <p cCardText>
-              Кабинет со стеклянными стенами на первом этаже. Вмещает до 5 человек
-            </p>
-          </c-card-body>
-        </c-card>
-      </c-col>
-      <c-col [sm]="12" [md]="6" class="mb-4">
-        <c-card class="h-100">
-          <div class="d-flex justify-content-center">
-            <button cButton color="success" style="width: 100px; margin: 4rem" class="align-middle">Добавить кабинет</button>
-          </div>
-        </c-card>
-      </c-col>
-    </c-row>
+    <button cButton
+            color="dark"
+            class="float-end"
+            (click)="onAddRoomClick()"
+            [hidden]="roomAddingMode">Добавить кабинет</button>
+  </c-col>
+</c-row>
+
+<div class="mt-3 mb-3" *ngIf="roomAddingMode">
+  <app-edit-room
+    (onAdd)="onRoomAdd($event)"
+    (onCancelled)="onRoomAddCancelled()"></app-edit-room>
+</div>
+
+<c-row>
+  <c-col>
+    <table [striped]="true" cTable>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Количество мест</th>
+        <th scope="col">Филиал</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let room of rooms">
+        <th scope="row">{{ room.id}}</th>
+        <td><a [routerLink]="['/infrastructure/room-details']" [queryParams]="{id: room.id}"> {{ room.name }}</a></td>
+        <td>{{ room.desks.length }}</td>
+        <td>{{room.filialName}}</td>
+      </tr>
+
+      </tbody>
+    </table>
   </c-col>
 </c-row>

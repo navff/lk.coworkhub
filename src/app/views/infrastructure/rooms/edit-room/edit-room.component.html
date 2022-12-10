@@ -1,0 +1,48 @@
+<c-row>
+  <c-col [sm]="10" [md]="8" [lg]="9" class="mb-5">
+    <form #customStylesForm="ngForm"
+          (ngSubmit)="onRoomEditSubmit()"
+          (focusout)="roomEditFocusOut()"
+          [validated]="editRoomFormValidated"
+          [formGroup]="editRoomForm"
+          cForm
+          class="needs-validation">
+
+      <app-filial-select
+        [selectedFilialId]="room.filialId"
+        (selected)="onSelectFilial($event)">
+      </app-filial-select>
+
+      <label cLabel for="exampleFormControlInput1"
+             class="mt-2">Название кабинета</label>
+      <c-input-group class="has-validation">
+        <input cFormControl
+               required
+               id="exampleFormControlInput1"
+               type="text"
+               formControlName="name"
+        />
+        <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+      </c-input-group>
+
+
+      <button cButton
+              color="dark"
+              type="submit"
+              style="width: auto"
+              [disabled]="!editRoomForm.valid || !editRoomForm.dirty"
+              class="mt-2">
+        Сохранить
+      </button>
+
+      <button cButton
+              color="secondary"
+              style="width: auto"
+              class="mt-2 ms-2"
+              (click)="onCancelClick()">
+        Отмена
+      </button>
+
+    </form>
+  </c-col>
+</c-row>
