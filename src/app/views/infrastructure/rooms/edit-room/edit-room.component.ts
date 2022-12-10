@@ -25,7 +25,9 @@ export class EditRoomComponent implements OnInit {
       Validators.required,
       Validators.minLength(1)
     ]),
-    filial: new FormControl(this.room.filialId)
+    filial: new FormControl(this.room.filialId, [
+      Validators.required,
+    ])
   });
 
   constructor(

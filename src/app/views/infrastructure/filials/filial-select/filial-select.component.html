@@ -2,7 +2,8 @@
 <select id="select-filial"
         aria-label="Default select example" cSelect
         [(ngModel)]="selectedFilialId"
-        (change)="onSelectFilial()">
+        (change)="onSelectFilial()"
+        required>
   <option *ngFor="let filial of filials"
           value="{{filial.id}}"
           >
