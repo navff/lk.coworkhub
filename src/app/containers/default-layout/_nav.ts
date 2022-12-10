@@ -53,14 +53,14 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-room' }
   },
   {
-    name: 'Рабочие места',
-    url: '/infrastructure/desks',
-    iconComponent: { name: 'cil-laptop' }
+    name: 'Услуги',
+    url: '/infrastructure/services',
+    iconComponent: { name: 'cil-print' }
   },
   {
     name: 'Ресурсы',
     url: '/infrastructure/resources',
-    iconComponent: { name: 'cil-print' }
+    iconComponent: { name: 'cil-fridge' }
   },
   {
     title: true,

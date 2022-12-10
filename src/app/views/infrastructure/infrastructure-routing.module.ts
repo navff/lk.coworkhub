@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DesksComponent } from "./desks/desks.component";
+import { PaidServiceComponent } from "./desks/paid-service.component";
 import { FilialsComponent } from "./filials/filials.component";
 import { ResourcesComponent } from "./resources/resources.component";
 import { RoomsComponent } from "./rooms/rooms.component";
@@ -42,10 +42,10 @@ const routes: Routes = [
         },
       },
       {
-        path: 'desks',
-        component: DesksComponent,
+        path: 'services',
+        component: PaidServiceComponent,
         data: {
-          title: 'Рабочие места',
+          title: 'Услуги',
         },
       },
       {
