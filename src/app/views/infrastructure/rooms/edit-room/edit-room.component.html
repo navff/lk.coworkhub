@@ -30,7 +30,7 @@
               color="dark"
               type="submit"
               style="width: auto"
-              [disabled]="!editRoomForm.valid || !editRoomForm.dirty"
+              [disabled]="!(editRoomForm.valid && editRoomForm.dirty)"
               class="mt-2">
         Сохранить
       </button>

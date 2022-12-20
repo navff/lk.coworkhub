@@ -39,7 +39,7 @@ export class EditRoomComponent implements OnInit {
     if (this.roomId) {
       this.room = this.roomService.getRoom('1');
     }
-    this.editRoomForm.controls.name.setValue(this.room.name);
+    this.resetForm();
   }
 
   onRoomEditSubmit() {
@@ -65,7 +65,7 @@ export class EditRoomComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.editRoomForm.reset(this.room);
+    this.resetForm();
     this.editRoomFormValidated = false;
     this.onCancelled.emit();
   }
@@ -74,5 +74,11 @@ export class EditRoomComponent implements OnInit {
     this.editRoomForm.controls.filial.setValue(filial.id);
     this.editRoomForm.markAsDirty();
     console.log(this.editRoomForm.controls.filial.value);
+  }
+
+  resetForm(){
+    this.editRoomForm.reset(this.room);
+    this.editRoomForm.controls.filial.setValue(this.room.filialId);
+    this.editRoomForm.controls.name.setValue(this.room.name);
   }
 }
