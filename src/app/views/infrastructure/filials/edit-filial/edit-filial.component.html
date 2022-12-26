@@ -1,0 +1,46 @@
+<c-row>
+  <c-col [sm]="10" [md]="8" [lg]="9">
+    <h4>Редактирование филиала</h4>
+
+    <c-card class="w-75 mb-2 mt-4">
+      <c-card-body>
+        <form #customStylesForm="ngForm"
+              (ngSubmit)="onSubmit()"
+              (focusout)="onFocusOut()"
+              [validated]="formValidated"
+              [formGroup]="editFilialForm"
+              cForm
+              class="needs-validation"
+        >
+          <div class="mb-3">
+            <label cLabel for="newDeskName">Название</label>
+            <c-input-group class="has-validation">
+              <input cFormControl
+                     id="newDeskName"
+                     type="text"
+                     formControlName="name"
+                     required="required"
+                     minlength="3"
+                     placeholder="Например, «Коворкинг на Андреевской»"
+              />
+              <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+            </c-input-group>
+          </div>
+
+          <button cButton
+                  color="dark"
+                  type="submit"
+                  class="me-2"
+                  [disabled]="!editFilialForm.valid">
+            Сохранить
+          </button>
+          <button cButton
+                  color="secondary"
+                  (click)="onCancel()">
+            Отмена
+          </button>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

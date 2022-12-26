@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-filials',
@@ -11,7 +12,7 @@ export class FilialsComponent implements OnInit {
 
   addingFilialMode: boolean = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +25,7 @@ export class FilialsComponent implements OnInit {
     this.addingFilialMode = false;
   }
 
+  onEditFilialClick(id: string) {
+    this.router.navigateByUrl('/infrastructure/edit-filial/'+ id);
+  }
 }

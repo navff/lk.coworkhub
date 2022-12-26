@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DeskComponent } from './rooms/desk/desk.component';
 import { EditRoomComponent } from './rooms/edit-room/edit-room.component';
 import { FilialSelectComponent } from './filials/filial-select/filial-select.component';
+import { EditFilialComponent } from './filials/edit-filial/edit-filial.component';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { FilialSelectComponent } from './filials/filial-select/filial-select.com
     RoomDetailsComponent,
     DeskComponent,
     EditRoomComponent,
-    FilialSelectComponent
+    FilialSelectComponent,
+    EditFilialComponent
   ]
 })
 export class InfrastructureModule {

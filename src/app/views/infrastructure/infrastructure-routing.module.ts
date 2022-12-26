@@ -6,6 +6,7 @@ import { FilialsComponent } from "./filials/filials.component";
 import { ResourcesComponent } from "./resources/resources.component";
 import { RoomsComponent } from "./rooms/rooms.component";
 import {RoomDetailsComponent} from "./room-details/room-details.component";
+import {EditFilialComponent} from "./filials/edit-filial/edit-filial.component";
 
 
 const routes: Routes = [
@@ -39,6 +40,13 @@ const routes: Routes = [
         component: RoomDetailsComponent,
         data: {
           title: 'Кабинет',
+        },
+      },
+      {
+        path: 'edit-filial/:id',
+        component: EditFilialComponent,
+        data: {
+          title: 'Редактировать филиал',
         },
       },
       {
