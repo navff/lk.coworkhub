@@ -13,10 +13,10 @@
               class="needs-validation"
         >
           <div class="mb-3">
-            <label cLabel for="newDeskName">Название</label>
+            <label cLabel for="filialName">Название</label>
             <c-input-group class="has-validation">
               <input cFormControl
-                     id="newDeskName"
+                     id="filialName"
                      type="text"
                      formControlName="name"
                      required="required"
@@ -25,13 +25,27 @@
               />
               <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
             </c-input-group>
+
+            <label cLabel for="filialAddress" class="mt-4">Адрес</label>
+            <c-input-group class="has-validation">
+              <input cFormControl
+                     id="filialAddress"
+                     type="text"
+                     formControlName="address"
+                     required="required"
+                     minlength="3"
+                     placeholder="Например, «Череповец, ул. Андреевская, д.6»"
+              />
+              <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+            </c-input-group>
+
           </div>
 
           <button cButton
                   color="dark"
                   type="submit"
                   class="me-2"
-                  [disabled]="!editFilialForm.valid">
+                  [disabled]="!(editFilialForm.valid && editFilialForm.dirty)">
             Сохранить
           </button>
           <button cButton
