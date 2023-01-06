@@ -1,0 +1,79 @@
+<c-modal id="liveDemoModal" [visible]="removeServiceModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle>Удалить услугу?</h5>
+    <button (click)="onCloseRemoveServiceModal()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Услуга будет удалена без возможности восстановления</c-modal-body>
+  <c-modal-footer>
+    <button (click)="onCloseRemoveServiceModal()" cButton color="secondary">
+      Отмена
+    </button>
+    <button cButton color="danger" (click)="removeService()">Да, удалить</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-card class="mb-2">
+  <c-card-body>
+    <strong style="cursor: pointer;" (click)="onServiceClick()">{{service.name}} </strong>
+    — {{service.price}}₽
+    <div style="float: right">
+      <button cButton color="danger" size="sm" (click)="onRemoveServiceClick()">
+        <svg cIcon name="cilTrash" size="sm" title="Paper Plane Icon"></svg>
+      </button>
+    </div>
+
+    <div class="edit-desk mt-4" [hidden]="!editMode">
+      <form cForm
+            [formGroup]="editServiceForm"
+            (focusout)="serviceEditFocusOut()"
+            [validated]="editServiceFormValidated"
+            class="needs-validation"
+            (ngSubmit)="onEditServiceSubmit()"
+      >
+        <div class="mb-3">
+          <label cLabel for="serviceName">Название</label>
+          <c-input-group class="has-validation">
+            <input cFormControl
+                   id="serviceName"
+                   type="text"
+                   formControlName="name"
+                   required = "required"
+                   minlength="1"
+            />
+            <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+          </c-input-group>
+
+
+        </div>
+        <div class="mb-3">
+          <label cLabel for="serviceMonthPrice">Цена</label>
+          <c-input-group class="has-validation">
+            <input cFormControl
+                   id="serviceMonthPrice"
+                   type="number"
+                   formControlName="price"
+                   required = "required"
+                   min="1"
+            />
+            <c-form-feedback [valid]="false">Введите число больше нуля</c-form-feedback>
+          </c-input-group>
+
+        </div>
+        <button cButton
+                color="primary"
+                type="submit"
+                class="me-2"
+                [disabled]="!editServiceForm.valid">
+          Сохранить
+        </button>
+        <button cButton
+                color="secondary"
+                (click)="onEditServiceCancel()">
+          Отмена
+        </button>
+      </form>
+    </div>
+  </c-card-body>
+</c-card>
+
+
