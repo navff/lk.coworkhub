@@ -18,6 +18,7 @@ import {StaffComponent} from "./staff/staff.component";
 // Theme Routing
 import { PeopleRoutingModule} from "./people-routing.module";
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     GuestsComponent,
     StaffComponent,
     UserDetailsComponent,
+    EditUserComponent,
   ]
 })
 export class PeopleModule {

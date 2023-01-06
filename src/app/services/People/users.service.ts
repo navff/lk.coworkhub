@@ -37,4 +37,23 @@ export class UsersService {
       {id: '42', name: 'Ford Prefect', registered: '2001/05/25', role: 'Alien', status: 'Don\'t panic!'}
     ]
   }
+
+  getUser(id: string) {
+    return {id: id, name: 'Пётр Петрович Петровидзэ', registered: '2001/05/25', role: 'Alien', status: 'Don\'t panic!'}
+  }
+
+  mapStatusToCssClass(status: string){
+    switch (status) {
+      case 'Active':
+        return 'success';
+      case 'Inactive':
+        return 'secondary';
+      case 'Pending':
+        return 'warning';
+      case 'Banned':
+        return 'danger';
+      default:
+        return 'primary';
+    }
+  }
 }

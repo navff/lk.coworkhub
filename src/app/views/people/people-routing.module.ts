@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {GuestsComponent} from "./guests/guests.component";
 import {StaffComponent} from "./staff/staff.component";
 import {UserDetailsComponent} from "./user-details/user-details.component";
+import {EditUserComponent} from "./edit-user/edit-user.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,20 @@ const routes: Routes = [
         component: UserDetailsComponent,
         data: {
           title: 'Информация о персоне',
+        },
+      },
+      {
+        path: 'edit-user/:id',
+        component: EditUserComponent,
+        data: {
+          title: 'Редактирование персоны',
+        },
+      },
+      {
+        path: 'edit-user',
+        component: EditUserComponent,
+        data: {
+          title: 'Добавление персоны',
         },
       },
     ],

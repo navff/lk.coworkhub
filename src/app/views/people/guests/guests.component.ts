@@ -11,8 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class GuestsComponent implements OnInit {
 
   constructor(private usersService: UsersService,
-              private routerService: Router,
-              private route: ActivatedRoute) { }
+              private routerService: Router) { }
 
   ngOnInit(): void {
     this.usersData = this.usersService.getGuests();
@@ -32,18 +31,7 @@ export class GuestsComponent implements OnInit {
   ];
 
   getBadge(status: string) {
-    switch (status) {
-      case 'Active':
-        return 'success';
-      case 'Inactive':
-        return 'secondary';
-      case 'Pending':
-        return 'warning';
-      case 'Banned':
-        return 'danger';
-      default:
-        return 'primary';
-    }
+    return this.usersService.mapStatusToCssClass(status);
   }
 
   details_visible = Object.create({});
@@ -54,5 +42,9 @@ export class GuestsComponent implements OnInit {
     console.log($event);
     this.routerService.navigateByUrl('/people/user-details/'+ $event.item.id);
 
+  }
+
+  onAddGuestClick() {
+    this.routerService.navigateByUrl('/people/edit-user/');
   }
 }
