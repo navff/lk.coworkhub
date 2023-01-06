@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Filial} from "./filial";
+import {Filial} from "../../models/infrastructure/filial";
 
 @Injectable({
   providedIn: 'root'

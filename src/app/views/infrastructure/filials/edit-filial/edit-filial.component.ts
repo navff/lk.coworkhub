@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Filial} from "../../../../services/Infrastructure/filial";
+import {Filial} from "../../../../models/infrastructure/filial";
 import {ToastService} from "../../../../services/Toast/toast.service";
 import {ActivatedRoute} from "@angular/router";
 

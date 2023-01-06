@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Room} from "../../../../models/infrastructure/room";
 import {RoomService} from "../../../../services/Infrastructure/room.service";
 import {ToastService} from "../../../../services/Toast/toast.service";
-import {Filial} from "../../../../services/Infrastructure/filial";
+import {Filial} from "../../../../models/infrastructure/filial";
 
 @Component({
   selector: 'app-edit-room',

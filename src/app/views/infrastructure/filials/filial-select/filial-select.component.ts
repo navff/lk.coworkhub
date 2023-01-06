@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilialService} from "../../../../services/Infrastructure/filial.service";
-import {Filial} from "../../../../services/Infrastructure/filial";
+import {Filial} from "../../../../models/infrastructure/filial";
 
 @Component({
   selector: 'app-filial-select',
