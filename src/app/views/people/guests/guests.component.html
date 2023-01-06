@@ -7,13 +7,10 @@
   [itemsPerPage]="50"
   [items]="usersData"
   [sorterValue]="{ column: 'name', state: 'asc' }"
-  [tableFilter]="true"
   [tableProps]="{ hover: true, striped: true, responsive: true }"
   [tableBodyProps]="{ align: 'middle' }"
   (rowClick)="onRowClick($event)"
-  cleaner
   clickableRows
-  footer
   header
   pagination
 >
