@@ -1,1 +1,65 @@
-<p>edit-user works!</p>
+<c-row>
+  <c-col [sm]="10" [md]="8" [lg]="9">
+    <c-card class="mb-4">
+      <c-card-header>
+        <div *ngIf="user.id"><h5 class="float-start">{{user.name}} </h5><small style="margin-left: 10px">(режим редактирования)</small></div>
+        <h5 *ngIf="!user.id" class="float-start">Добавление пользователя</h5>
+      </c-card-header>
+
+      <c-card-body>
+        <form #customStylesForm="ngForm"
+              (ngSubmit)="onSubmit()"
+              (focusout)="onFocusOut()"
+              [validated]="formValidated"
+              [formGroup]="editUserForm"
+              cForm
+              class="needs-validation"
+        >
+          <div class="mb-3">
+            <label cLabel for="name">ФИО пользователя</label>
+            <c-input-group class="has-validation">
+              <input cFormControl
+                     id="name"
+                     type="text"
+                     formControlName="name"
+                     required="required"
+                     minlength="3"
+              />
+              <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+            </c-input-group>
+
+            <label cLabel for="role" class="mt-4">Роль</label>
+            <c-input-group class="has-validation">
+              <input cFormControl
+                     id="role"
+                     type="text"
+                     formControlName="role"
+                     required="required"
+                     minlength="3"
+                     placeholder="user | admin"
+              />
+              <c-form-feedback [valid]="false">Название нужно ввести обязательно</c-form-feedback>
+            </c-input-group>
+
+          </div>
+
+          <button cButton
+                  color="dark"
+                  type="submit"
+                  class="me-2"
+                  [disabled]="!(editUserForm.valid && editUserForm.dirty)">
+            Сохранить
+          </button>
+          <button cButton
+                  color="secondary"
+                  (click)="onCancel()">
+            Отмена
+          </button>
+        </form>
+      </c-card-body>
+    </c-card>
+
+
+  </c-col>
+
+</c-row>

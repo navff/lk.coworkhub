@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CardModule, GridModule, NavModule, UtilitiesModule, TabsModule } from '@coreui/angular-pro';
+import {
+  CardModule,
+  GridModule,
+  NavModule,
+  UtilitiesModule,
+  TabsModule,
+  SmartTableModule,
+  CollapseModule, SharedModule, ButtonModule
+} from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
 import { CwhBillingComponent} from "./cwh-billing/cwh-billing.component";
@@ -19,7 +27,11 @@ import { FinansRoutingModule} from "./finans-routing.module";
     UtilitiesModule,
     IconModule,
     NavModule,
-    TabsModule
+    TabsModule,
+    SmartTableModule,
+    CollapseModule,
+    SharedModule,
+    ButtonModule
   ],
   declarations: [
     CwhBillingComponent,

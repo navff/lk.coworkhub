@@ -1,14 +1,22 @@
 <c-row>
   <c-col [sm]="10" [md]="8" [lg]="9">
     <c-card class="mb-4">
-      <c-card-header><h5>{{user.name}}</h5></c-card-header>
+      <c-card-header>
+        <h5 class="float-start">{{user.name}}</h5>
+        <button
+          class="btn btn-sm btn-light float-end"
+          (click)="onEditUserClick()"
+        >Редактировать</button>
+      </c-card-header>
+
       <c-card-body>
         Id: {{user.id}}<br/>
         Зарегистрирован: {{user.registered}}<br/>
         Роль: {{user.role}}<br/>
-        <c-badge [color]="getBadge(user.status)">
-          {{user.status}}
-        </c-badge>
+        <c-badge [color]="getBadge(user.subscription?.status())">
+          {{user.subscription?.status()}}
+        </c-badge><br/>
+        Подписка: 09.01.2023 – 31.12.2023
       </c-card-body>
     </c-card>
 

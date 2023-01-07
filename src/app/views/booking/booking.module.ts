@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CardModule, GridModule, NavModule, UtilitiesModule, TabsModule } from '@coreui/angular-pro';
+import {
+  CardModule,
+  GridModule,
+  NavModule,
+  UtilitiesModule,
+  TabsModule,
+  ProgressModule,
+  TableModule, AvatarModule
+} from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
 import { TimetableComponent } from "./timetable/timetable.component";
@@ -19,7 +27,10 @@ import { BookingRoutingModule } from "./booking-routing.module";
     UtilitiesModule,
     IconModule,
     NavModule,
-    TabsModule
+    TabsModule,
+    ProgressModule,
+    TableModule,
+    AvatarModule
   ],
   declarations: [
     TimetableComponent,

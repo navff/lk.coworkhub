@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {BookingService} from "../../../services/Booking/booking.service";
+import {Booking} from "../../../models/Booking/booking";
+import {UsersService} from "../../../services/People/users.service";
+import {UserShort} from "../../../models/People/user";
 
 @Component({
   selector: 'app-today',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodayComponent implements OnInit {
 
-  constructor() { }
+  residents: UserShort[];
+  todayBookings: Booking[];
+
+  constructor(private bookingService: BookingService,
+              private usersService: UsersService) { }
+
 
   ngOnInit(): void {
+    this.residents = this.usersService.getActiveResidents();
+    this.todayBookings = this.bookingService.getTodayBookings();
   }
 
 }

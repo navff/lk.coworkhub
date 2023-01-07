@@ -8,7 +8,7 @@ import {
   UtilitiesModule,
   TabsModule,
   SmartTableModule,
-  CollapseModule, BadgeModule, ButtonModule, SharedModule
+  CollapseModule, BadgeModule, ButtonModule, SharedModule, FormModule
 } from '@coreui/angular-pro';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -19,6 +19,7 @@ import {StaffComponent} from "./staff/staff.component";
 import { PeopleRoutingModule} from "./people-routing.module";
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -34,7 +35,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     CollapseModule,
     BadgeModule,
     ButtonModule,
-    SharedModule
+    SharedModule,
+    FormModule,
+    ReactiveFormsModule
   ],
   declarations: [
     GuestsComponent,

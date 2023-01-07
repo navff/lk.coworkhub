@@ -1,1 +1,123 @@
-<p>today works fine</p>
+<c-row>
+  <c-col [md]="12" [lg]="6">
+    <c-card>
+      <c-card-header>
+        <h4>Записались на сегодня</h4>
+      </c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th class="text-center">
+              <svg cIcon name="cilPeople"></svg>
+            </th>
+            <th>Гость</th>
+            <th>Время записи</th>
+            <th>Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let booking of todayBookings; index as i">
+            <td class="text-center">
+              <c-avatar
+                size="md"
+                src="{{ booking.user.avatar }}"
+                status="{{ booking.user.subscription.status() }}"
+              ></c-avatar>
+            </td>
+            <td>
+              <div>{{ booking.user.name }}</div>
+              <div class="small text-medium-emphasis">
+                <span>{{ booking.user.phone }}</span>
+              </div>
+            </td>
+            <td>
+              <div>{{ booking.timeFrom }} – {{ booking.timeTo }}</div>
+              <div class="small text-medium-emphasis">
+                <span>Прошло: 15 мин. (150₽)</span>
+              </div>
+            </td>
+            <td>
+              <div class="">
+                <button class="btn btn- btn-light">Начать</button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+  <c-col [md]="12" [lg]="6">
+    <c-card>
+      <c-card-header>
+        <h4>Могут прийти по абонементу</h4>
+      </c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th class="text-center">
+              <svg cIcon name="cilPeople"></svg>
+            </th>
+            <th>Гость</th>
+            <th>Абонемент</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of residents; index as i">
+            <td class="text-center">
+              <c-avatar
+                size="md"
+                src="{{ user.avatar }}"
+                status="{{ user.subscription.status() }}"
+              ></c-avatar>
+            </td>
+            <td>
+              <div>{{ user.name }}</div>
+              <div class="small text-medium-emphasis">
+                <span>{{ user.phone }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="clearfix">
+                <div class="float-start">
+                  <strong>{{ user.subscription.percent }}%</strong>
+                </div>
+                <div class="float-end">
+                  <small class="text-medium-emphasis">
+                    {{ user.subscription.from }} – {{ user.subscription.to }}
+                  </small>
+                </div>
+              </div>
+              <c-progress thin>
+                <c-progress-bar
+                  [value]="user.subscription?.percent"
+                  color="{{ user.subscription?.status() }}-gradient"
+                ></c-progress-bar
+                >
+              </c-progress>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+</c-row>
