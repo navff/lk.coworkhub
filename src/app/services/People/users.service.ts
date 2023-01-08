@@ -49,10 +49,10 @@ export class UsersService {
 
   getActiveResidents() : UserShort[] {
     return [
-      {id: '23', name: 'Пётр Досочкин', subscription: new UserSubscription('2023-01-09', '2023-12-31', 5), phone: '+7-999-777-8866' },
-      {id: '24', name: 'Василий Петечкин', subscription: new UserSubscription('2023-01-09', '2023-12-31', 10), phone: '+7-999-777-8866', avatar: 'https://technobalt.com/media/filer_public_thumbnails/filer_public/50/4c/504c2c62-3952-4947-8c29-b62b9e5d5023/contact.png__1170x1170_q85_crop_subsampling-2_upscale.jpg'},
-      {id: '25', name: 'Анна Васечкина', subscription: new UserSubscription('2023-01-09', '2023-12-31', 55), phone: '+7-999-777-8866' },
-      {id: '26', name: 'Пётр Досочкин', subscription: new UserSubscription('2023-01-09', '2023-12-31', 93), phone: '+7-999-777-8866' },
+      {id: '23', name: 'Пётр Досочкин', subscription: new UserSubscription(new Date(2023, 1, 9), new Date(2023, 12, 31), 5), phone: '+7-999-777-8866' },
+      {id: '24', name: 'Василий Петечкин', subscription: new UserSubscription(new Date(2023, 1, 9), new Date(2023, 12, 31), 10), phone: '+7-999-777-8866', avatar: 'https://technobalt.com/media/filer_public_thumbnails/filer_public/50/4c/504c2c62-3952-4947-8c29-b62b9e5d5023/contact.png__1170x1170_q85_crop_subsampling-2_upscale.jpg'},
+      {id: '25', name: 'Анна Васечкина', subscription: new UserSubscription(new Date(2023, 1, 9), new Date(2023, 12, 31), 55), phone: '+7-999-777-8866' },
+      {id: '26', name: 'Пётр Досочкин', subscription: new UserSubscription(new Date(2023, 1, 9), new Date(2023, 12, 31), 93), phone: '+7-999-777-8866' },
     ]
   }
 

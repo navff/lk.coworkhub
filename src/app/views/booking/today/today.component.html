@@ -2,21 +2,22 @@
   <c-col [md]="12" [lg]="6">
     <c-card>
       <c-card-header>
-        <h4>Записались на сегодня</h4>
+        <h4 class="float-start">Записались на сегодня</h4>
+        <button class="float-end btn btn-sm btn-light">Добавить запись</button>
       </c-card-header>
       <c-card-body>
         <table
           [hover]="true"
           [responsive]="true"
           [striped]="true"
-          align="middle"
+          style="vertical-align: middle;"
           cTable
           class="mb-0 border"
         >
           <thead cTableColor="light">
           <tr>
             <th class="text-center">
-              <svg cIcon name="cilPeople"></svg>
+              <svg cIcon="" name="cilPeople"></svg>
             </th>
             <th>Гость</th>
             <th>Время записи</th>
@@ -24,12 +25,12 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let booking of todayBookings; index as i">
+          <tr *ngFor="let booking of todayBookings; index as i" [ngClass]="booking.status === 'Cancelled' ? 'booking-cancelled' : ''" >
             <td class="text-center">
               <c-avatar
                 size="md"
                 src="{{ booking.user.avatar }}"
-                status="{{ booking.user.subscription.status() }}"
+                status="{{ booking.color() }}"
               ></c-avatar>
             </td>
             <td>
@@ -39,15 +40,66 @@
               </div>
             </td>
             <td>
-              <div>{{ booking.timeFrom }} – {{ booking.timeTo }}</div>
+              <div>{{ booking.dateFrom.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }} – {{ booking.dateTo.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }}</div>
               <div class="small text-medium-emphasis">
-                <span>Прошло: 15 мин. (150₽)</span>
+                <span *ngIf="booking.canStop()">Прошло: 15 мин. (150₽)<br/></span>
+                <span>{{ booking.status}}</span>
               </div>
             </td>
             <td>
-              <div class="">
-                <button class="btn btn- btn-light">Начать</button>
-              </div>
+                <button
+                  cButton color="success"
+                  size="sm"
+                  *ngIf="booking.canStart()"
+                  title="Начать"
+                  class="me-2">
+                  <svg cIcon="" name="cilMediaPlay"></svg>
+                </button>
+
+                <button
+                  cButton color="danger"
+                  size="sm"
+                  *ngIf="booking.canStop()"
+                  title="Закончить"
+                  class="me-2">
+                  <svg cIcon="" name="cilMediaStop"></svg>
+                </button>
+
+                <button
+                  *ngIf="booking.canPay()"
+                  cButton color="warning"
+                  title="Оплатить"
+                  size="sm"
+                  class="me-2">
+                  <svg cIcon="" name="cibCcVisa"></svg>
+                </button>
+
+                <button
+                  *ngIf="booking.canCopy()"
+                  cButton color="light-gradient"
+                  title="Копировать"
+                  size="sm"
+                  variant="outline"
+                  class="me-2">
+                  <svg cIcon="" name="cilCopy"></svg>
+                </button>
+
+                <button *ngIf="booking.canCancel()"
+                        cButton color="light-gradient"
+                        title="Отменить"
+                        size="sm"
+                        class="me-2"
+                        variant="outline">
+                  <svg cIcon="" name="cilBan"></svg>
+                </button>
+
+                <button cButton color="light-gradient"
+                        title="Редактировать"
+                        size="sm"
+                        class="me-2"
+                        variant="outline">
+                  <svg cIcon="" name="cilPencil"></svg>
+                </button>
             </td>
           </tr>
           </tbody>
@@ -66,14 +118,14 @@
           [hover]="true"
           [responsive]="true"
           [striped]="true"
-          align="middle"
+          style="text-align: center"
           cTable
           class="mb-0 border"
         >
           <thead cTableColor="light">
           <tr>
             <th class="text-center">
-              <svg cIcon name="cilPeople"></svg>
+              <svg cIcon="" name="cilPeople"></svg>
             </th>
             <th>Гость</th>
             <th>Абонемент</th>
@@ -85,7 +137,6 @@
               <c-avatar
                 size="md"
                 src="{{ user.avatar }}"
-                status="{{ user.subscription.status() }}"
               ></c-avatar>
             </td>
             <td>
@@ -101,14 +152,14 @@
                 </div>
                 <div class="float-end">
                   <small class="text-medium-emphasis">
-                    {{ user.subscription.from }} – {{ user.subscription.to }}
+                    {{ user.subscription.from.toLocaleDateString() }} – {{ user.subscription.to.toLocaleDateString() }}
                   </small>
                 </div>
               </div>
               <c-progress thin>
                 <c-progress-bar
                   [value]="user.subscription?.percent"
-                  color="{{ user.subscription?.status() }}-gradient"
+                  color="{{ user.subscription?.usage_color() }}-gradient"
                 ></c-progress-bar
                 >
               </c-progress>

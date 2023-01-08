@@ -13,8 +13,8 @@
         Id: {{user.id}}<br/>
         Зарегистрирован: {{user.registered}}<br/>
         Роль: {{user.role}}<br/>
-        <c-badge [color]="getBadge(user.subscription?.status())">
-          {{user.subscription?.status()}}
+        <c-badge [color]="getBadge(user.subscription?.usage_color())">
+          {{user.subscription?.usage_color()}}
         </c-badge><br/>
         Подписка: 09.01.2023 – 31.12.2023
       </c-card-body>
