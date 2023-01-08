@@ -1,6 +1,96 @@
 <c-row>
-  <c-col [md]="12" [lg]="6">
-    <c-card>
+  <c-col [md]="12" [lg]="12" [xl]="6">
+    <c-card class="mb-3">
+      <c-card-header>
+        <h4 class="float-start">Сейчас работают</h4>
+        <button class="float-end btn btn-sm btn-light">Добавить визит</button>
+      </c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          style="vertical-align: middle;"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th class="text-center">
+              <svg cIcon="" name="cilPeople"></svg>
+            </th>
+            <th>Гость</th>
+            <th>Время записи</th>
+            <th>Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visit of todayVisits; index as i" [ngClass]="visit.status === 'Cancelled' ? 'booking-cancelled' : ''" >
+            <td class="text-center">
+              <c-avatar
+                size="md"
+                src="{{ visit.user.avatar() }}"
+                status="{{ visit.color() }}"
+              ></c-avatar>
+            </td>
+            <td>
+              <div>{{ visit.user.name }}</div>
+              <div class="small text-medium-emphasis">
+                <span>{{ visit.user.phone }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="small text-medium-emphasis">
+                <span *ngIf="visit.canStop() || visit.canPay()">{{visit.getElapsedHours()}} час. {{visit.getElapsedMinutes()}} мин. ({{visit.amount}}₽)<br/></span>
+                <span>{{ visit.status}}</span>
+              </div>
+            </td>
+            <td>
+                <button
+                  cButton color="danger"
+                  size="sm"
+                  *ngIf="visit.canStop()"
+                  title="Закончить"
+                  class="me-2">
+                  <svg cIcon="" name="cilMediaStop"></svg>
+                </button>
+
+                <button
+                  *ngIf="visit.canPay()"
+                  cButton color="warning"
+                  title="Оплатить"
+                  size="sm"
+                  class="me-2">
+                  <svg cIcon="" name="cibCcVisa"></svg>
+                </button>
+
+                <button
+                  *ngIf="visit.canCopy()"
+                  cButton color="light-gradient"
+                  title="Копировать"
+                  size="sm"
+                  variant="outline"
+                  class="me-2">
+                  <svg cIcon="" name="cilCopy"></svg>
+                </button>
+
+                <button cButton color="light-gradient"
+                        title="Редактировать"
+                        size="sm"
+                        class="me-2"
+                        variant="outline">
+                  <svg cIcon="" name="cilPencil"></svg>
+                </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+  <c-col [md]="12" [lg]="12" [xl]="6">
+    <c-card class="mb-3">
       <c-card-header>
         <h4 class="float-start">Записались на сегодня</h4>
         <button class="float-end btn btn-sm btn-light">Добавить запись</button>
@@ -29,7 +119,7 @@
             <td class="text-center">
               <c-avatar
                 size="md"
-                src="{{ booking.user.avatar }}"
+                src="{{ booking.user.avatar() }}"
                 status="{{ booking.color() }}"
               ></c-avatar>
             </td>
@@ -42,77 +132,48 @@
             <td>
               <div>{{ booking.dateFrom.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }} – {{ booking.dateTo.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }}</div>
               <div class="small text-medium-emphasis">
-                <span *ngIf="booking.canStop()">{{booking.getElapsedHours()}} час. {{booking.getElapsedMinutes()}} мин. (150₽)<br/></span>
                 <span>{{ booking.status}}</span>
               </div>
             </td>
             <td>
-                <button
-                  cButton color="success"
-                  (click)="onBookingStart(booking)"
-                  size="sm"
-                  *ngIf="booking.canStart()"
-                  title="Начать"
-                  class="me-2">
-                  <svg cIcon="" name="cilMediaPlay"></svg>
-                </button>
+              <button
+                cButton color="success"
+                (click)="onBookingStart(booking)"
+                size="sm"
+                *ngIf="booking.canStart()"
+                title="Начать"
+                class="me-2">
+                <svg cIcon="" name="cilMediaPlay"></svg>
+              </button>
 
-                <button
-                  cButton color="danger"
-                  size="sm"
-                  *ngIf="booking.canStop()"
-                  title="Закончить"
-                  class="me-2">
-                  <svg cIcon="" name="cilMediaStop"></svg>
-                </button>
+              <button *ngIf="booking.canCancel()"
+                      cButton color="light-gradient"
+                      title="Отменить"
+                      size="sm"
+                      class="me-2"
+                      variant="outline">
+                <svg cIcon="" name="cilBan"></svg>
+              </button>
 
-                <button
-                  *ngIf="booking.canPay()"
-                  cButton color="warning"
-                  title="Оплатить"
-                  size="sm"
-                  class="me-2">
-                  <svg cIcon="" name="cibCcVisa"></svg>
-                </button>
-
-                <button
-                  *ngIf="booking.canCopy()"
-                  cButton color="light-gradient"
-                  title="Копировать"
-                  size="sm"
-                  variant="outline"
-                  class="me-2">
-                  <svg cIcon="" name="cilCopy"></svg>
-                </button>
-
-                <button *ngIf="booking.canCancel()"
-                        cButton color="light-gradient"
-                        title="Отменить"
-                        size="sm"
-                        class="me-2"
-                        variant="outline">
-                  <svg cIcon="" name="cilBan"></svg>
-                </button>
-
-                <button cButton color="light-gradient"
-                        title="Редактировать"
-                        size="sm"
-                        class="me-2"
-                        variant="outline">
-                  <svg cIcon="" name="cilPencil"></svg>
-                </button>
+              <button *ngIf="booking.canEdit()"
+                      cButton color="light-gradient"
+                      title="Редактировать"
+                      size="sm"
+                      class="me-2"
+                      variant="outline">
+                <svg cIcon="" name="cilPencil"></svg>
+              </button>
             </td>
           </tr>
           </tbody>
         </table>
       </c-card-body>
     </c-card>
-  </c-col>
 
-  <c-col [md]="12" [lg]="6">
     <c-card>
       <c-card-header>
-        <h4>Могут прийти по абонементу</h4>
+        <h4 class="float-start">Могут прийти по абонементу</h4>
+        <button class="float-end" cButton color="light" size="sm">Продать абонемент</button>
       </c-card-header>
       <c-card-body>
         <table
@@ -137,7 +198,7 @@
             <td class="text-center">
               <c-avatar
                 size="md"
-                src="{{ user.avatar }}"
+                src="{{ user.avatar() }}"
               ></c-avatar>
             </td>
             <td>

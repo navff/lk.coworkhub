@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../../models/People/user";
+import { UserShort } from "../../../models/People/user";
 import {UsersService} from "../../../services/People/users.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-guests',
@@ -17,7 +17,7 @@ export class GuestsComponent implements OnInit {
     this.usersData = this.usersService.getGuests();
   }
 
-  usersData: User[];
+  usersData: UserShort[];
 
   columns = [
     {

@@ -12,15 +12,15 @@ import {ToastService} from "../../../services/Toast/toast.service";
 })
 export class EditUserComponent implements OnInit {
 
-  user: User = new User();
+  user: User;
   formValidated: boolean;
 
   editUserForm = new FormGroup({
-    name: new FormControl(this.user.name, [
+    name: new FormControl('', [
       Validators.required,
       Validators.minLength(1)
     ]),
-    role: new FormControl(this.user.role, [
+    role: new FormControl('', [
       Validators.required
     ])
   });
