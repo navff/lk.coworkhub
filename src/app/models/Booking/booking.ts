@@ -4,6 +4,8 @@ export class Booking {
   id: string;
   dateFrom: Date;
   dateTo: Date;
+  dateStarted?: Date;
+  dateStopped?: Date;
   amount: number;
   paid: boolean;
   user: UserShort;
@@ -53,6 +55,20 @@ export class Booking {
 
   canCancel() {
     return this.status === BookingStatus.Created;
+  }
+
+  getElapsedHours() {
+    if (!this.dateStarted) return 0;
+
+    const span = (new Date()).getTime() - this.dateStarted?.getTime();
+    return Math.floor((span % 86400000) / 3600000);
+  }
+
+  getElapsedMinutes() {
+    if (!this.dateStarted) return 0;
+
+    const span = (new Date()).getTime() - this.dateStarted?.getTime();
+    return Math.round(((span % 86400000) % 3600000) / 60000);
   }
 }
 

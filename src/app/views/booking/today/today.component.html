@@ -42,13 +42,14 @@
             <td>
               <div>{{ booking.dateFrom.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }} – {{ booking.dateTo.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }}</div>
               <div class="small text-medium-emphasis">
-                <span *ngIf="booking.canStop()">Прошло: 15 мин. (150₽)<br/></span>
+                <span *ngIf="booking.canStop()">{{booking.getElapsedHours()}} час. {{booking.getElapsedMinutes()}} мин. (150₽)<br/></span>
                 <span>{{ booking.status}}</span>
               </div>
             </td>
             <td>
                 <button
                   cButton color="success"
+                  (click)="onBookingStart(booking)"
                   size="sm"
                   *ngIf="booking.canStart()"
                   title="Начать"

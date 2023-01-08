@@ -14,7 +14,7 @@ export class BookingService {
       new Booking(
         '1',
         new Date(2023, 1, 9, 13, 0),
-        new Date(2023, 1, 9, 18, 0),
+        new Date(2023, 1, 9, 18, 30),
         123,
         true,
         {

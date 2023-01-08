@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../../../services/Booking/booking.service";
-import {Booking} from "../../../models/Booking/booking";
+import {Booking, BookingStatus} from "../../../models/Booking/booking";
 import {UsersService} from "../../../services/People/users.service";
 import {UserShort} from "../../../models/People/user";
 
@@ -23,4 +23,8 @@ export class TodayComponent implements OnInit {
     this.todayBookings = this.bookingService.getTodayBookings();
   }
 
+  onBookingStart(booking: Booking) {
+    console.log('Booking started');
+    booking.status = BookingStatus.Started;
+  }
 }
